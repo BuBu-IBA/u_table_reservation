@@ -67,3 +67,20 @@ resource "aws_lambda_permission" "allow_api_gateway_create_reservation" {
   source_arn    = "${var.api_execution_arn}/*"
   function_name = aws_lambda_function.create_reservation.function_name
 }
+
+######################
+# CloudWatch logs
+######################
+
+resource "aws_cloudwatch_log_group" "get_available_tables_log_group" {
+  name              = "/aws/lambda/get_available_tables"
+  retention_in_days = 14
+}
+resource "aws_cloudwatch_log_group" "get_reservation_log_group" {
+  name              = "/aws/lambda/get_reservation"
+  retention_in_days = 14
+}
+resource "aws_cloudwatch_log_group" "create_reservation_log_group" {
+  name              = "/aws/lambda/create_reservation"
+  retention_in_days = 14
+}
